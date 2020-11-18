@@ -65,10 +65,18 @@
                         <span class="btnColorTool__description">{{btn.desc}}</span>
                     </div>
                     <div class="select-lines"
-                         :class="[toggleToolBtns ? 'selecte-lines--hide' : '']"
+                         :class="[
+                            toggleToolBtns ? 'selecte-lines--hide' : '',
+                            activeSVGSelection[2]
+                            ]"
                          v-if="selectedPart"
                     >
-                        <svg  viewBox="0 0 84 168"  class="select-lines__svg" fill="none" v-html="activeSVGSelection[0]"></svg>
+                        <svg  viewBox="0 0 84 168"
+                              class="select-lines__svg"
+                              :class="activeSVGSelection[1]"
+                              fill="none"
+                              v-html="activeSVGSelection[0]"
+                        ></svg>
                     </div>
                     <canvas id="suiteCanvas" :width="canvasWidth" :height="canvasHeight" ref = "canRef"></canvas>
                     <div class="toggle-tools">

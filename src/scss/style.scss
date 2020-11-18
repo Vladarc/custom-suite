@@ -282,16 +282,24 @@ body{
 
 .select-lines {
     position: absolute;
-    top:25%;
-    left:59%;
+
+
+    &--left-hand-front {
+        top:25%;
+        left:59%;
+    }
 
     &--hide {
         @include tr();
         opacity: 0;
     }
+
     &__svg {
-        width:58px;
-        height: 129px;
+        &--left-hand-front {
+            width:58px;
+            height: 129px;
+        }
+
     }
 }
 

@@ -367,7 +367,8 @@ const customSuite = new Vue({
             let part = this.btnColorTool[id];
             this.selectedPart = part.value;
             this.setSelectedColor(part);
-            this.$set(this.activeSVGSelection,0,this.drawSVGSelect(part.value)[0])
+            this.activeSVGSelection =  this.drawSVGSelect(part.value);
+
         },
 
         choiceColorHandler(color){
@@ -444,12 +445,13 @@ const customSuite = new Vue({
         },
 
         drawSVGSelect(part) {
+            part = this.showSide ? `${part}-front` : `${part}-back`
             switch (part) {
-                case this.showSide :
-                case 'left-hand' :
+                case 'left-hand-front' :
                   return  [
                       this.svgSelectionPath.leftHandFront,
-                      'select-lines__svg--left-hand-front'
+                      'select-lines__svg--left-hand-front',
+                       'select-lines--left-hand-front'
                   ];
                 default :
                     return '';
