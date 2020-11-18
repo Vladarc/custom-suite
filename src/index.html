@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/style.min.css">
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+
+</head>
+<body>
+<section class="container">
+
+    <div id="custom-suite">
+        <div class="main-content-wrapper">
+            <div class="select-color-suite">
+                <div class="select-wrapper"
+                     v-for="(color, idx) in selectColor.colors "
+                     :class="[selectedPart !== '' ? '' : disabledEvent[1] ]" >
+                    <span class="toolTipText">First select part of suite!</span>
+                    <div class="color-select"
+                         :class="[selectedPart !== '' ? '' : disabledEvent[0],
+                             selectColor.isActiveColor === color.value ? activeColorCls : '']"
+                         @click="choiceColorHandler(color.value)"
+                         :style="{'background-image': 'url(' + color.src + ')'}" >&nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="preview-suite-wrapper">
+                <div @click="switchSidesHandler" class="btn-switch-side">
+
+                    <div class="side-front-mini" v-if="!showSide">
+                        <img v-for="(part, index) in frontSuite"
+                             :src="part.src"
+                             :alt="part.alt"
+                             :class="part.classMini">
+                    </div>
+                    <div class="side-back-mini" v-if="showSide">
+                        <img v-for="(part, index) in backSuite"
+                             :src="part.src"
+                             :alt="part.alt"
+                             :class="part.classMini">
+                    </div>
+
+                    <div class="side-reverse-text">
+
+                        <svg class="feature__img"  width="22px" height="20px">
+                            <use xlink:href="#reverse"></use></svg>
+                        <span>{{ switchBtn }}</span>
+                    </div>
+                </div>
+                <div class="suite-constructor">
+
+                    <div
+                        class="btnColorTool"
+                        v-for="(btn,idx) in btnColorTool"
+                        :class="[btn.cssCls, toggleToolBtns ? 'btnColorTool--hide' : '', selectedPart === btn.value ? 'btnColorTool--selected' : '']"
+                        @click="selectPartHandled(idx)"
+                    >
+                        <div class="btnColorTool__icon">
+                            <svg class="btnColorTool__img"  width="17px" height="17px">
+                                <use xlink:href="#brush"></use></svg>
+                        </div>
+                        <span class="btnColorTool__description">{{btn.desc}}</span>
+                    </div>
+                    <div class="select-lines"
+                         :class="[toggleToolBtns ? 'selecte-lines--hide' : '']"
+                         v-if="selectedPart"
+                    >
+                        <svg  viewBox="0 0 84 168"  class="select-lines__svg" fill="none" v-html="activeSVGSelection[0]"></svg>
+                    </div>
+                    <canvas id="suiteCanvas" :width="canvasWidth" :height="canvasHeight" ref = "canRef"></canvas>
+                    <div class="toggle-tools">
+                        <div class="toggle-tools__wrraper" @click = "toggleTools">
+                        <svg class="btnColorTool__img"  width="18px" height="11px">
+                            <use xlink:href="#eye"></use></svg>
+                            <span class="toggle-tools__text">Show/Hide buttons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<svg style="display: none;">
+    <symbol id="reverse"  viewBox="0 0 22 20">
+        <path d="M2.2382 5.84274C3.54838 4.15735 6.98774 3.29568 8.78922 2.97733V0C5.95051 0.224773 3.43919 1.40456 2.29278 2.13488C0.709648 3.14342 0.818866 4.43824 2.2382 5.84274Z" fill="#333333"/>
+        <path d="M15.5583 10.3371C9.99007 10.3371 0.764268 8.93261 0 5.44948V10.3371C1.69231 15.1124 9.00744 15.8427 15.5583 16.4045V20L22 13.2584L15.5583 6.62925V10.3371Z" fill="#333333"/>
+    </symbol>
+    <symbol id="brush" viewBox="0 0 17 17">
+        <path d="M16.8321 6.61452C17.056 6.39071 17.056 6.02778 16.8321 5.80394L15.9719 4.94376C15.7774 4.74922 15.472 4.72037 15.2445 4.87498L13.4358 6.10424L14.6577 4.28339C14.8102 4.05599 14.7807 3.75236 14.587 3.55874L12.7211 1.69288C12.5488 1.52062 12.2865 1.47602 12.0671 1.58176L11.7445 1.73709L11.899 1.39433C11.9969 1.1771 11.9502 0.921996 11.7818 0.753483L11.1961 0.167854C10.9723 -0.0559512 10.6093 -0.0559512 10.3855 0.167854L5.83602 4.71728L12.2827 11.1639L16.8321 6.61452Z" />
+        <path d="M4.98891 5.56443L3.67191 6.88143C3.56442 6.98892 3.50401 7.13469 3.50401 7.2867C3.50401 7.4387 3.56438 7.58452 3.67191 7.69197L4.9212 8.94126C5.16189 9.18195 5.27863 9.51412 5.24149 9.85256C5.20438 10.1908 5.01822 10.4898 4.73075 10.6731C1.05984 13.0131 0.717661 13.3553 0.605242 13.4678C-0.201747 14.2747 -0.201747 15.5877 0.605242 16.3948C1.41303 17.2025 2.72614 17.2009 3.53225 16.3948C3.64474 16.2823 3.98704 15.94 6.32689 12.2693C6.50969 11.9825 6.80862 11.7967 7.14698 11.7595C7.48641 11.7225 7.81855 11.8387 8.05867 12.0788L9.30796 13.3281C9.53176 13.5519 9.89474 13.5519 10.1185 13.3281L11.4356 12.011L4.98891 5.56443ZM2.67673 15.469C2.36034 15.7854 1.84738 15.7854 1.53103 15.469C1.21464 15.1526 1.21464 14.6396 1.53103 14.3233C1.84742 14.0069 2.36037 14.0069 2.67673 14.3233C2.99312 14.6396 2.99312 15.1526 2.67673 15.469Z" />
+    </symbol>
+    <symbol id="eye" viewBox="0 0 18 11" >
+        <path d="M9 10.7297C5.56091 10.7297 2.44216 8.84811 0.140841 5.79196C-0.0469469 5.54158 -0.0469469 5.19178 0.140841 4.94139C2.44216 1.88156 5.56091 0 9 0C12.4391 0 15.5578 1.88156 17.8592 4.93771C18.0469 5.1881 18.0469 5.53789 17.8592 5.78828C15.5578 8.84811 12.4391 10.7297 9 10.7297ZM9.2467 1.58699C6.96379 1.44339 5.07855 3.32495 5.22215 5.61154C5.33998 7.49678 6.86806 9.02485 8.7533 9.14268C11.0362 9.28628 12.9214 7.40473 12.7778 5.11813C12.6563 3.23658 11.1283 1.7085 9.2467 1.58699ZM9.13256 3.33231C7.90273 3.25499 6.88647 4.26757 6.96747 5.49739C7.03007 6.51365 7.85486 7.33477 8.87113 7.40104C10.101 7.47837 11.1172 6.46579 11.0362 5.23596C10.9699 4.21602 10.1451 3.39491 9.13256 3.33231Z" />
+    </symbol>
+</svg>
+<script src="./js/main.min.js"></script>
+</body>
+</html>
