@@ -451,7 +451,7 @@ const customSuite = new Vue({
                   return  [
                       this.svgSelectionPath.leftHandFront,
                       'select-lines__svg--left-hand-front',
-                       'select-lines--left-hand-front'
+                      'select-lines--left-hand-front'
                   ];
                 default :
                     return '';
@@ -460,13 +460,17 @@ const customSuite = new Vue({
 
         toggleTools() {
             this.toggleToolBtns = !this.toggleToolBtns;
-        }
+        },
+
+        toggleToolsMobile() {
+            this.toggleToolBtns = !this.toggleToolBtns
+        },
     },
+
 
     mounted() {
         const canvas =  this.$refs.canRef;
         this.ctx = canvas.getContext("2d");
         this.drawImages(this.frontSuite)
-
     }
 });

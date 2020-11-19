@@ -83,20 +83,63 @@ body{
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
+
+    @media screen and (max-width: 940px){
+        flex-direction: column;
+    }
 }
 
 
 .select-color-suite{
-    flex: 0 1 12.333%;
+    flex: 0 1 15.333%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: start;
+
+    @media screen and (max-width: 940px){
+        order: 1;
+        display: block;
+        overflow-x: scroll;
+        padding: 0  0 10px;
+        background: rgba(0, 0, 0, 0.03);
+        white-space: nowrap;
+        height: 120px;
+        border: 1px solid #E4E4E4;
+        border-top: none;
+    }
+
+    &-mobile {
+        display: none;
+        order: 1;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid #E4E4E4;
+        border-bottom: none;
+        padding: 10px 10px 10px 20px;
+
+        &_title {
+            display: inline-block;
+            text-transform: uppercase;
+            color:  #333333;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        &_warning {
+            &-text {
+                color:#FF5252;
+            }
+        }
+
+        @media screen and (max-width: 940px){
+            display: block;
+        }
+    }
 }
 .preview-suite-wrapper{
     flex: 1 1 55%;
     position: relative;
-    overflow-y: scroll;
     overflow-x: hidden;
     height: 100vh;
 }
@@ -107,6 +150,16 @@ body{
     width:100%;
     margin-bottom: 5px;
     cursor: pointer;
+    @media screen and (max-width: 940px){
+        display: inline-flex;
+        max-width: 100px;
+        margin-bottom: 0px;
+
+        & + & {
+            margin-left: 10px;
+
+        }
+    }
 }
 .color-select {
     width:100%;
@@ -174,6 +227,10 @@ body{
     padding: 5px;
     position: absolute;
     z-index: 1;
+    @media screen and (max-width: 940px){
+        display: none;
+    }
+
 }
 .not-allowed:hover .toolTipText{
     visibility: visible;
@@ -195,74 +252,390 @@ body{
     box-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 13px 12px -7px rgba(255,255,255,0.9);
     cursor: pointer;
     background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
-    @include tr();
+    transition: opacity .4s ease-in;
+    will-change:left,top;
+    @media screen and (max-width: 940px) {
+        box-shadow: 0px -3px 9px rgba(255, 255, 255, 0.9), 0px 13px 12px -14px rgba(0, 0, 0, 0.19);
+        padding:0;
+        border-radius: 71px;
+        width: 57px;
+        height: 54px;
+    }
+
     &__icon {
         display: flex;
         justify-content: center;
         margin-right: 8px;
+        @media screen and (max-width: 940px) {
+            margin-right: 0;
+        }
     }
     &__description {
         @include font ($ff: inherit, $fz:18px,$fc:#333333,$fw:500,$lh:1);
         max-width: 53px;
+        @media screen and (max-width: 940px) {
+            display: none;
+        }
     }
 
     &--hide {
+        transition: opacity .4s ease-in;
         opacity: 0;
         pointer-events: none;
-        @include tr();
+
     }
 
     &--selected {
-        @include tr();
+        transition: background .4s ease-in, box-shadow .4s ease-in;
         background: linear-gradient(180deg, #DC004E 0%, #E40252 100%);
         box-shadow: inset 0px 5px 4px rgba(0, 0, 0, 0.17);
 
         & span , svg {
-            @include tr();
+            transition: color .4s ease-in, fill .4s ease-in;
             color: #fff;
             fill: #fff;
         }
 
+        &:before,
+        &:after {
+            transition: background .4s ease-in;
+            background: linear-gradient(180deg, #DC004E 0%, #E40252 100%);
+        }
+
     }
 
-    &--head{
+    &--head.front-side{
         @include posA($top:20%,$left:32%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:17%,$left:36%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 38px;
+                left: 99%;
+                width: 32px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(18deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 38px;
+                left: 144%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
+    }
+    &--head.back-side {
+        @include posA($top:19%,$left:30%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:17%,$left:36%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 38px;
+                left: 99%;
+                width: 32px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(18deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 38px;
+                left: 144%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
     }
 
     &--body {
         @include posA($top:20%,$left: 70%,$delta_x:-50%,$delta_y:-50%);
     }
 
-    &--right-hand {
+    &--right-hand.front-side {
         @include posA($top:32%,$left: 20%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:28%,$left: 26%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 38px;
+                left: 99%;
+                width: 32px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(18deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 38px;
+                left: 144%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
     }
 
-    &--right-wrist {
+    &--right-hand.back-side {
+        @include posA($top:32%,$left: 81%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:30%,$left: 74%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 45px;
+                right: 93%;
+                width: 32px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(-30deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 50px;
+                right: 144%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
+    }
+
+    &--right-wrist.front-side {
         @include posA($top:50%,$left: 20%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:44%,$left: 23%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 26px;
+                left: 99%;
+                width: 32px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(0deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 23px;
+                left: 144%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
     }
 
-    &--left-hand {
+    &--right-wrist.back-side {
+        @include posA($top:50%,$left: 82%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:44%,$left: 77%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 26px;
+                right: 99%;
+                width: 32px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(0deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 23px;
+                right: 144%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
+    }
+
+    &--left-hand.front-side{
         @include posA($top:32%,$left: 81%,$delta_x:-50%,$delta_y:-50%);
     }
 
-    &--left-wrist {
+    &--left-hand.back-side{
+        @include posA($top:32%,$left: 20%,$delta_x:-50%,$delta_y:-50%);
+    }
+
+    &--left-wrist.front-side {
         @include posA($top:50%,$left: 82%,$delta_x:-50%,$delta_y:-50%);
     }
 
-    &--right-leg {
+    &--left-wrist.back-side  {
+        @include posA($top:50%,$left: 20%,$delta_x:-50%,$delta_y:-50%);
+    }
+
+    &--right-leg.front-side {
         @include posA($top:66%,$left: 25%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:58%,$left: 30%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 26px;
+                left: 99%;
+                width: 37px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(0deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 23px;
+                left: 150%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
     }
 
-    &--right-ankle {
+    &--right-leg.back-side {
+        @include posA($top:66%,$left: 77%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:58%,$left: 70%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 26px;
+                right: 99%;
+                width: 37px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(0deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 23px;
+                right: 150%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
+    }
+
+    &--right-ankle.front-side {
         @include posA($top:83%,$left: 25%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:70%,$left: 30%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 31px;
+                left: 99%;
+                width: 37px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(7deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 30px;
+                left: 160%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
     }
 
-    &--left-leg {
+    &--right-ankle.back-side {
+        @include posA($top:83%,$left: 77%,$delta_x:-50%,$delta_y:-50%);
+        @media screen and (max-width: 940px){
+            @include posA($top:70%,$left: 70%,$delta_x:-50%,$delta_y:-50%);
+            &:before {
+                content: '';
+                position: absolute;
+                top: 40px;
+                right: 97%;
+                width: 37px;
+                height: 2px;
+                z-index: 2;
+                transform: rotate(-20deg);
+                background-color: #A8A8A8;
+
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 44px;
+                right: 160%;
+                background-color: #A8A8A8;
+                z-index: 2;
+            }
+        }
+    }
+
+    &--left-leg.front-side {
         @include posA($top:66%,$left: 77%,$delta_x:-50%,$delta_y:-50%);
     }
 
-    &--left-ankle {
+    &--left-leg.back-side {
+        @include posA($top:66%,$left: 25%,$delta_x:-50%,$delta_y:-50%);
+    }
+
+    &--left-ankle.front-side {
         @include posA($top:83%,$left: 77%,$delta_x:-50%,$delta_y:-50%);
+    }
+    &--left-ankle.back-side {
+        @include posA($top:83%,$left: 25%,$delta_x:-50%,$delta_y:-50%);
     }
 }
 .toggle-tools {
@@ -270,13 +643,16 @@ body{
     justify-content: center;
     user-select: none;
 
-    &__wrraper {
+    &__wrapper {
         cursor: pointer;
     }
 
     &__text {
         @include font ($ff: inherit, $fz:16px,$fc:#333333,$fw:400,$lh:1);
         text-decoration: underline;
+    }
+    @media screen and (max-width: 940px){
+        display: none;
     }
 }
 
@@ -304,7 +680,4 @@ body{
 }
 
 @import 'posA';
-
-
-
-
+@import 'mobileSwitcher';

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="./css/style.min.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
@@ -14,9 +16,17 @@
 
     <div id="custom-suite">
         <div class="main-content-wrapper">
+            <div class="select-color-suite-mobile">
+                <span class="select-color-suite-mobile_title">choose color</span>
+                <div class="select-color-suite-mobile_warning">
+                    <svg class="btnColorTool__img"  width="18px" height="16px">
+                        <use xlink:href="#warning"></use></svg>
+                    <span class="select-color-suite-mobile_warning-text">Choose part of the suit at first</span>
+                </div>
+            </div>
             <div class="select-color-suite">
                 <div class="select-wrapper"
-                     v-for="(color, idx) in selectColor.colors "
+                     v-for="(color) in selectColor.colors "
                      :class="[selectedPart !== '' ? '' : disabledEvent[1] ]" >
                     <span class="toolTipText">First select part of suite!</span>
                     <div class="color-select"
@@ -55,7 +65,11 @@
                     <div
                         class="btnColorTool"
                         v-for="(btn,idx) in btnColorTool"
-                        :class="[btn.cssCls, toggleToolBtns ? 'btnColorTool--hide' : '', selectedPart === btn.value ? 'btnColorTool--selected' : '']"
+                        :class="[
+                        btn.cssCls,
+                        toggleToolBtns ? 'btnColorTool--hide' : '',
+                        selectedPart === btn.value ? 'btnColorTool--selected' : '',
+                        showSide ? 'front-side' : 'back-side']"
                         @click="selectPartHandled(idx)"
                     >
                         <div class="btnColorTool__icon">
@@ -66,7 +80,7 @@
                     </div>
                     <div class="select-lines"
                          :class="[
-                            toggleToolBtns ? 'selecte-lines--hide' : '',
+                            toggleToolBtns ? 'select-lines--hide' : '',
                             activeSVGSelection[2]
                             ]"
                          v-if="selectedPart"
@@ -80,11 +94,23 @@
                     </div>
                     <canvas id="suiteCanvas" :width="canvasWidth" :height="canvasHeight" ref = "canRef"></canvas>
                     <div class="toggle-tools">
-                        <div class="toggle-tools__wrraper" @click = "toggleTools">
+                        <div class="toggle-tools__wrapper" @click = "toggleTools">
                         <svg class="btnColorTool__img"  width="18px" height="11px">
                             <use xlink:href="#eye"></use></svg>
                             <span class="toggle-tools__text">Show/Hide buttons</span>
                         </div>
+                    </div>
+                    <div class="toggleWrapper">
+                        <input
+                            type="checkbox"
+                            name="toggle1"
+                            class="mobileToggle"
+                            id="toggle1"
+                            checked
+                            @change="toggleToolsMobile"
+                        >
+                        <label for="toggle1"></label>
+                        <div class="toggleWrapper__text">Show/Hide buttons</div>
                     </div>
                 </div>
             </div>
@@ -105,7 +131,11 @@
     <symbol id="eye" viewBox="0 0 18 11" >
         <path d="M9 10.7297C5.56091 10.7297 2.44216 8.84811 0.140841 5.79196C-0.0469469 5.54158 -0.0469469 5.19178 0.140841 4.94139C2.44216 1.88156 5.56091 0 9 0C12.4391 0 15.5578 1.88156 17.8592 4.93771C18.0469 5.1881 18.0469 5.53789 17.8592 5.78828C15.5578 8.84811 12.4391 10.7297 9 10.7297ZM9.2467 1.58699C6.96379 1.44339 5.07855 3.32495 5.22215 5.61154C5.33998 7.49678 6.86806 9.02485 8.7533 9.14268C11.0362 9.28628 12.9214 7.40473 12.7778 5.11813C12.6563 3.23658 11.1283 1.7085 9.2467 1.58699ZM9.13256 3.33231C7.90273 3.25499 6.88647 4.26757 6.96747 5.49739C7.03007 6.51365 7.85486 7.33477 8.87113 7.40104C10.101 7.47837 11.1172 6.46579 11.0362 5.23596C10.9699 4.21602 10.1451 3.39491 9.13256 3.33231Z" />
     </symbol>
+    <symbol id="warning" viewBox="0 0 17 16" >
+        <path d="M8.72409 0.647377L8.72414 0.64747L16.3022 14.9954L16.3028 14.9965C16.3306 15.0488 16.3444 15.1074 16.3428 15.1668C16.3413 15.2261 16.3244 15.2839 16.2939 15.3347C16.2635 15.3854 16.2205 15.4272 16.1693 15.4561C16.1181 15.485 16.0604 15.5001 16.0018 15.5H16.0008L0.842893 15.5L0.841922 15.5C0.78318 15.5001 0.72535 15.485 0.674056 15.456C0.622756 15.427 0.579693 15.3851 0.549163 15.3343C0.518629 15.2835 0.501704 15.2255 0.500122 15.1661C0.49854 15.1066 0.512357 15.0478 0.540159 14.9954L0.540577 14.9946L8.11952 0.647501L8.11959 0.647377C8.15928 0.5722 8.26219 0.5 8.42184 0.5C8.5815 0.5 8.68441 0.5722 8.72409 0.647377ZM9.26395 13.9682H9.76395V13.4682V11.7803V11.2803H9.26395H7.57974H7.07974V11.7803V13.4682V13.9682H7.57974H9.26395ZM7.07974 10.0924V10.5924H7.57974H9.26479H9.76489L9.76479 10.0923L9.76395 5.87252L9.76385 5.37262H9.26395H7.57974H7.07974V5.87262V10.0924Z" fill="#FF5252" stroke="#E4E4E4"/>
+    </symbol>
 </svg>
 <script src="./js/main.min.js"></script>
 </body>
 </html>
+
