@@ -18,7 +18,10 @@
         <div class="main-content-wrapper">
             <div class="select-color-suite-mobile">
                 <span class="select-color-suite-mobile_title">choose color</span>
-                <div class="select-color-suite-mobile_warning">
+                <div
+                    class="select-color-suite-mobile_warning"
+                    :class="[selectedPart !== '' ? 'hide-warning' : '' ]"
+                >
                     <svg class="btnColorTool__img"  width="18px" height="16px">
                         <use xlink:href="#warning"></use></svg>
                     <span class="select-color-suite-mobile_warning-text">Choose part of the suit at first</span>

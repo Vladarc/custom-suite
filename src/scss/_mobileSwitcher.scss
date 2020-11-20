@@ -13,10 +13,16 @@
 .toggleWrapper {
   width: 200px;
   text-align: center;
-  margin:30px 250px 20px 10px;
+  margin:30px 10px 20px 250px;
   display: none;
   @media screen and (max-width: 940px) {
     display: block;
+  }
+  @media screen and (max-width: 440px) {
+    margin:30px 10px 20px 180px;
+  }
+  @media screen and (max-width: 370px) {
+    margin:30px 10px 20px 145px;
   }
   &__text {
     margin-top: 10px;
