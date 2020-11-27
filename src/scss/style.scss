@@ -74,7 +74,7 @@ body{
     @media screen and (max-width: 940px) {
         top: auto;
         right: auto;
-        bottom: 17px;
+        bottom: 100px;
         left: 36px;
         flex-direction: row;
         max-width: 200px;
@@ -112,7 +112,7 @@ body{
 
 
 .select-color-suite{
-    flex: 0 1 15.333%;
+    flex: 0 1 16.333%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -277,6 +277,7 @@ body{
     align-items: center;
     justify-content: center;
     position: absolute;
+    z-index: 2;
     border: 1px solid #A8A8A8;
     border-radius: 33px;
     padding: 10px 13px;
@@ -1468,16 +1469,118 @@ body{
 
 .select-lines {
     position: absolute;
+    z-index: 1;
 
+    &--hide {
+        @include tr();
+        opacity: 0;
+    }
 
     &--left-hand-front {
         top:25%;
         left:59%;
     }
 
-    &--hide {
-        @include tr();
-        opacity: 0;
+    &--body-front {
+        top: 22%;
+        left: 39%;
+    }
+
+    &--collar-front {
+        top: 18%;
+        left: 46%;
+        @media screen and (max-width: 940px){
+            top: 16%;
+        }
+    }
+
+    &--left-ankle-front {
+        bottom: 13%;
+        left: 54%;
+    }
+
+    &--left-wrist-front {
+        top: 46%;
+        left: 64%;
+    }
+
+    &--right-ankle-front {
+        bottom: 14%;
+        left: 42%;
+    }
+
+    &--left-leg-front {
+        top: 50%;
+        left: 41%;
+    }
+
+    &--right-leg-front {
+        top: 50%;
+        left: 31%;
+    }
+
+    &--right-wrist-front {
+        top: 47%;
+        left: 33%;
+    }
+
+    &--right-hand-front {
+        top: 25%;
+        left: 33%;
+        @media screen and (max-width: 940px){
+            top: 23%;
+        }
+    }
+
+    &--collar-back {
+        top: 17%;
+        left: 44%;
+    }
+
+    &--body-back {
+        top: 22%;
+        left: 34%;
+    }
+
+    &--right-hand-back {
+        top: 21%;
+        left: 58%;
+    }
+
+    &--right-wrist-back {
+        top: 47%;
+        left: 61%;
+    }
+
+    &--left-hand-back {
+        top: 25%;
+        left: 31%;
+    }
+
+    &--right-leg-back {
+        top: 50%;
+        left: 50%;
+    }
+
+    &--right-ankle-back {
+        bottom: 12%;
+        left: 53%;
+    }
+
+    &--left-wrist-back {
+        top: 45%;
+        left: 32%;
+
+    }
+
+    &--left-leg-back {
+        bottom: 17%;
+        left: 34%;
+    }
+
+    &--left-ankle-back {
+        bottom: 13%;
+        left: 41%;
     }
 
     &__svg {
@@ -1486,6 +1589,104 @@ body{
             height: 129px;
         }
 
+        &--body-front {
+            width: 124px;
+            height: 150px;
+        }
+
+        &--collar-front {
+            width: 55px;
+            height: 55px;
+        }
+
+        &--left-ankle-front {
+            width: 30px;
+            height: 40px;
+        }
+
+        &--left-wrist-front {
+            width: 30px;
+            height: 35px;
+        }
+
+        &--right-ankle-front {
+            width: 30px;
+            height: 40px;
+        }
+
+        &--left-leg-front {
+            width: 150px;
+            height: 160px;
+        }
+
+        &--right-leg-front {
+            width: 150px;
+            height: 160px;
+        }
+
+        &--right-wrist-front {
+            width: 30px;
+            height: 30px;
+            @media screen and (max-width: 940px) {
+                top: 42%;
+                left: 34%;
+            }
+        }
+
+        &--right-hand-front {
+            width: 53px;
+            height: 133px;
+        }
+
+        &--collar-back {
+            width: 55px;
+            height: 47px;
+        }
+
+        &--body-back {
+            width: 150px;
+            height: 155px;
+        }
+
+        &--right-hand-back {
+            width: 52px;
+            height: 181px;
+        }
+
+        &--right-wrist-back {
+            width: 35px;
+            height: 35px;
+        }
+
+        &--left-hand-back {
+            width: 45px;
+            height: 132px;
+        }
+
+        &--right-leg-back {
+            width: 55px;
+            height: 175px;
+        }
+
+        &--right-ankle-back {
+            width: 35px;
+            height: 35px;
+        }
+
+        &--left-wrist-back {
+            width: 35px;
+            height: 35px;
+        }
+
+        &--left-leg-back {
+            width: 110px;
+            height: 165px;
+        }
+
+        &--left-ankle-back {
+            width: 30px;
+            height: 30px;
+        }
     }
 }
 #suiteCanvas {
@@ -1495,6 +1696,27 @@ body{
     }
     @media screen and (max-width: 440px){
         width: 320px;
+    }
+}
+.addToCart-suite {
+    padding: 30px 0;
+    text-align: center;
+    &__btn {
+        text-transform: uppercase;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: inline-block;
+        outline: 0;
+        border: 1px solid  rgb(209, 17, 42) ;
+        background-color: rgb(209, 17, 42);
+        color: #fff;
+        @include tr;
+        &:hover {
+            @include tr;
+            background-color: #fff;
+            border-radius: 4px;
+            color: rgb(209, 17, 42);
+        }
     }
 }
 @import 'posA';

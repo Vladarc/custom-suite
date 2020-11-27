@@ -10,7 +10,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Head.webp',
                 side: 'front',
                 alt: 'Custom head image',
-                value: 'head'
+                value: 'head',
+                pos: 'top'
             },
             {
                 class: 'body',
@@ -20,7 +21,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Body.webp',
                 side: 'front',
                 alt: 'Custom body image',
-                value: 'front-body'
+                value: 'front-body',
+                pos: 'center'
             },
             {
                 class: 'left-hand',
@@ -30,7 +32,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Left-Hand.webp',
                 side: 'front',
                 alt: 'Custom left hand image',
-                value: 'left-hand'
+                value: 'left-hand',
+                pos: 'left'
             },
             {
                 class: 'left-hand-bottom',
@@ -40,7 +43,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Left-Hand-Bottom.webp',
                 side: 'front',
                 alt: 'Custom left hand bottom image',
-                value: 'left-wrist'
+                value: 'left-wrist',
+                pos: 'left-bottom'
             },
             {
                 class: 'right-hand',
@@ -50,7 +54,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Right-Hand.webp',
                 side: 'front',
                 alt: 'Custom right hand image',
-                value: 'right-hand'
+                value: 'right-hand',
+                pos: 'right'
             },
             {
                 class: 'right-hand-bottom',
@@ -60,7 +65,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Right-Hand-Bottom.webp',
                 side: 'front',
                 alt: 'Custom right hand bottom image',
-                value: 'right-wrist'
+                value: 'right-wrist',
+                pos: 'right-bottom'
             },
             {
                 class: 'right-leg',
@@ -70,7 +76,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Right-Leg.webp',
                 side: 'front',
                 alt: 'Custom right leg image',
-                value: 'right-leg'
+                value: 'right-leg',
+                pos: 'bottom-right'
             },
             {
                 class: 'right-leg-bottom',
@@ -80,7 +87,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Right-Leg-Bottom.webp',
                 side: 'front',
                 alt: 'Custom right leg bottom image',
-                value: 'right-ankle'
+                value: 'right-ankle',
+                pos: 'bottom-right'
             },
             {
                 class: 'left-leg',
@@ -90,7 +98,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Left-Leg.webp',
                 side: 'front',
                 alt: 'Custom left leg image',
-                value: 'left-leg'
+                value: 'left-leg',
+                pos: 'bottom-left'
             },
             {
                 class: 'left-leg-bottom',
@@ -100,7 +109,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/front_side_webp/PBS-Front-Blue-White-Left-Leg-Bottom.webp',
                 side: 'front',
                 alt: 'Custom left leg bottom image',
-                value: 'left-ankle'
+                value: 'left-ankle',
+                pos: 'bottom-left'
             },
         ],
         backSuite: [
@@ -112,7 +122,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Head.webp',
                 value: 'head',
                 side: 'back',
-                alt:  'Custom back head image'
+                alt:  'Custom back head image',
+                pos: 'top'
             },
             {
                 class: 'back-body',
@@ -122,7 +133,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Body.webp',
                 side: 'back',
                 alt:  'Custom back body image',
-                value: 'back-body'
+                value: 'back-body',
+                pos: 'center'
             },
             {
                 class: 'back-left-hand',
@@ -132,7 +144,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Left-Hand.webp',
                 side: 'back',
                 alt:  'Custom back left hand image',
-                value: 'left-hand'
+                value: 'left-hand',
+                pos: 'left'
             },
             {
                 class: 'back-left-hand-bottom',
@@ -142,7 +155,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Left-Hand-Bottom.webp',
                 side: 'back',
                 alt:  'Custom back left hand bottom image',
-                value: 'left-wrist'
+                value: 'left-wrist',
+                pos: 'left-bottom'
             },
             {
                 class: 'back-right-hand',
@@ -152,7 +166,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Right-Hand.webp',
                 side: 'back',
                 alt:  'Custom back right hand image',
-                value: 'right-hand'
+                value: 'right-hand',
+                pos: 'right'
             },
             {
                 class: 'back-right-hand-bottom',
@@ -162,7 +177,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Right-Hand-Bottom.webp',
                 side: 'back',
                 alt:  'Custom back right hand bottom image',
-                value: 'right-wrist'
+                value: 'right-wrist',
+                pos: 'right-bottom'
             },
             {
                 class: 'back-left-leg',
@@ -172,7 +188,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Left-Leg.webp',
                 side: 'back',
                 alt:  'Custom back left lag image',
-                value: 'left-leg'
+                value: 'left-leg',
+                pos: 'bottom-left'
             },
             {
                 class: 'back-left-leg-bottom',
@@ -182,7 +199,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Left-Leg-Bottom.webp',
                 side: 'back',
                 alt:  'Custom back left lag bottom image',
-                value: 'left-ankle'
+                value: 'left-ankle',
+                pos: 'bottom-left'
             },
             {
                 class: 'back-right-leg',
@@ -192,7 +210,8 @@ const customSuite = new Vue({
                 blueWhite:  'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Right-Leg.webp',
                 side: 'back',
                 alt:  'Custom back right lag image',
-                value: 'right-leg'
+                value: 'right-leg',
+                pos: 'bottom-right'
             },
             {
                 class: 'back-right-leg-bottom',
@@ -202,7 +221,8 @@ const customSuite = new Vue({
                 blueWhite: 'https://www.fdt-dog-supplies.com/custom_suite/images/back_side_webp/PBS-Backside-Blue-White-Right-Leg-Bottom.webp',
                 side: 'back',
                 alt:  'Custom back right lag bottom image',
-                value: 'right-ankle'
+                value: 'right-ankle',
+                pos: 'bottom-right'
             },
         ],
         switchBtn: 'Back',
@@ -334,15 +354,6 @@ const customSuite = new Vue({
         activeColorCls: 'is-active-color',
         ctx: null,
         toggleToolBtns:false,
-        svgSelectionPath: {
-            leftHandFront: `<path d="M2.02546 45C2.52546 41 21.5254 6 34.5254 2C37.5253 6 44.4248 
-                            15.9 50.0248 25.5C58.7748 40.5 68.5248 69 72.0248 78C75.5248 87 81.5248 134 
-                            81.5248 140C81.5248 146 78.5248 166.5 77.5248 166.5C76.5248 166.5 56.0248 163 
-                            47.0248 163.5C38.0248 164 36.0248 166.5 34.5248 164.5C35.0248 149 33.093 
-                            141.295 33.0248 140C32.5248 130.5 28.5248 108 24.0248 101C19.5248 94 13.525 
-                            85.5 11.025 76C8.52496 66.5 1.52546 49 2.02546 45Z" 
-                            stroke="#DC004E" stroke-width="3" stroke-miterlimit="16" stroke-dasharray="10 5"/>`
-        },
         activeSVGSelection:[],
         canvasWidth:500,
         canvasHeight:500,
@@ -446,13 +457,148 @@ const customSuite = new Vue({
 
         drawSVGSelect(part) {
             part = this.showSide ? `${part}-front` : `${part}-back`
+            console.log(part)
             switch (part) {
                 case 'left-hand-front' :
                   return  [
-                      this.svgSelectionPath.leftHandFront,
+                      '#left-hand-front',
                       'select-lines__svg--left-hand-front',
-                      'select-lines--left-hand-front'
+                      'select-lines--left-hand-front',
                   ];
+
+                case 'body-front':
+                    return [
+                        '#body-front',
+                        'select-lines__svg--body-front',
+                        'select-lines--body-front',
+                    ];
+
+                case 'head-front':
+                    return [
+                        '#collar-front',
+                        'select-lines__svg--collar-front',
+                        'select-lines--collar-front',
+                    ];
+
+                case 'left-ankle-front':
+                    return [
+                        '#left-ankle-front',
+                        'select-lines__svg--left-ankle-front',
+                        'select-lines--left-ankle-front',
+                    ];
+
+                case 'left-wrist-front':
+                    return [
+                        '#left-wrist-front',
+                        'select-lines__svg--left-wrist-front',
+                        'select-lines--left-wrist-front',
+                    ];
+
+                case 'right-ankle-front':
+                    return [
+                        '#right-ankle-front',
+                        'select-lines__svg--right-ankle-front',
+                        'select-lines--right-ankle-front',
+                    ];
+
+                case 'left-leg-front':
+                    return [
+                        '#left-leg-front',
+                        'select-lines__svg--left-leg-front',
+                        'select-lines--left-leg-front',
+                    ];
+
+                case 'right-leg-front':
+                    return [
+                        '#right-leg-front',
+                        'select-lines__svg--right-leg-front',
+                        'select-lines--right-leg-front',
+                    ];
+
+                case 'right-wrist-front':
+                    return [
+                        '#right-wrist-front',
+                        'select-lines__svg--right-wrist-front',
+                        'select-lines--right-wrist-front',
+                    ];
+
+                case 'right-hand-front':
+                    return [
+                       '#right-hand-front',
+                        'select-lines__svg--right-hand-front',
+                        'select-lines--right-hand-front',
+                    ];
+
+                case 'head-back':
+                    return [
+                        '#collar-back',
+                        'select-lines__svg--collar-back',
+                        'select-lines--collar-back',
+                    ];
+
+                case 'body-back':
+                    return [
+                        '#body-back',
+                        'select-lines__svg--body-back',
+                        'select-lines--body-back',
+                    ];
+
+                case 'left-hand-back':
+                    return [
+                        '#left-hand-back',
+                        'select-lines__svg--left-hand-back',
+                        'select-lines--left-hand-back',
+                    ];
+
+                case 'right-hand-back':
+                    return [
+                        '#right-hand-back',
+                        'select-lines__svg--right-hand-back',
+                        'select-lines--right-hand-back',
+                    ];
+
+                case 'right-wrist-back':
+                    return [
+                        '#right-wrist-back',
+                        'select-lines__svg--right-wrist-back',
+                        'select-lines--right-wrist-back',
+                    ];
+
+                case 'right-leg-back':
+                    return [
+                        '#right-leg-back',
+                        'select-lines__svg--right-leg-back',
+                        'select-lines--right-leg-back',
+                    ];
+
+                case 'right-ankle-back':
+                    return [
+                        '#right-ankle-back',
+                        'select-lines__svg--right-ankle-back',
+                        'select-lines--right-ankle-back',
+                    ];
+
+                case 'left-wrist-back':
+                    return [
+                        '#left-wrist-back',
+                        'select-lines__svg--left-wrist-back',
+                        'select-lines--left-wrist-back',
+                    ];
+
+                case 'left-leg-back':
+                    return [
+                        '#left-leg-back',
+                        'select-lines__svg--left-leg-back',
+                        'select-lines--left-leg-back',
+                    ];
+
+                case 'left-ankle-back':
+                    return [
+                        '#left-ankle-back',
+                        'select-lines__svg--left-ankle-back',
+                        'select-lines--left-ankle-back',
+                    ];
+
                 default :
                     return '';
             }
@@ -465,6 +611,34 @@ const customSuite = new Vue({
         toggleToolsMobile() {
             this.toggleToolBtns = !this.toggleToolBtns
         },
+
+        sentImageData() {
+           const sentImagesPath = async () => {
+               try {
+                   const request = await  fetch('https://www.fdt-dog-supplies.com/custom_suite/imageTest.php', {
+                       method: "POST",
+                       headers: {
+                           'Content-Type': 'application/json',
+                       },
+                       body: JSON.stringify({
+                           type: 'create_images',
+                           frontParts: this.frontSuite,
+                           backParts: this.backSuite,
+                           id: Date.now() + Math.floor(Math.random() * 100),
+                       })
+                   })
+                   const {status,data} =  await request.json()
+                   if(!status) throw new Error('Error')
+                    console.log(data)
+               } catch (e) {
+                   console.error(e)
+               } finally {
+                   this.$refs.triggerBtn.click();
+                   console.log('end fetch')
+               }
+           }
+            sentImagesPath()
+        }
     },
 
 
