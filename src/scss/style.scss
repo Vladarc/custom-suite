@@ -1470,7 +1470,9 @@ body{
 .select-lines {
     position: absolute;
     z-index: 1;
-
+    @media screen and (max-width: 940px) {
+        display: none;
+    }
     &--hide {
         @include tr();
         opacity: 0;
@@ -1489,9 +1491,6 @@ body{
     &--collar-front {
         top: 18%;
         left: 46%;
-        @media screen and (max-width: 940px){
-            top: 16%;
-        }
     }
 
     &--left-ankle-front {
@@ -1527,9 +1526,6 @@ body{
     &--right-hand-front {
         top: 25%;
         left: 33%;
-        @media screen and (max-width: 940px){
-            top: 23%;
-        }
     }
 
     &--collar-back {
@@ -1570,6 +1566,9 @@ body{
     &--left-wrist-back {
         top: 45%;
         left: 32%;
+        @media screen and (max-width: 940px){
+            top: 40%;
+        }
 
     }
 
@@ -1627,10 +1626,6 @@ body{
         &--right-wrist-front {
             width: 30px;
             height: 30px;
-            @media screen and (max-width: 940px) {
-                top: 42%;
-                left: 34%;
-            }
         }
 
         &--right-hand-front {
