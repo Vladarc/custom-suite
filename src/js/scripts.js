@@ -357,6 +357,8 @@ const customSuite = new Vue({
         activeSVGSelection:[],
         canvasWidth:500,
         canvasHeight:500,
+        showLoader:false,
+        showWarning: false,
     },
     methods: {
         switchSidesHandler(){
@@ -448,7 +450,6 @@ const customSuite = new Vue({
                 let img = new Image ();
                 img.src = image.src;
                 img.onload = function () {
-                    console.log ('loaded')
                     ctx.drawImage(img, 0, 0,500,500);
                 }
             })
@@ -457,7 +458,7 @@ const customSuite = new Vue({
 
         drawSVGSelect(part) {
             part = this.showSide ? `${part}-front` : `${part}-back`
-            console.log(part)
+
             switch (part) {
                 case 'left-hand-front' :
                   return  [
@@ -615,7 +616,8 @@ const customSuite = new Vue({
         sentImageData() {
            const sentImagesPath = async () => {
                try {
-                   const request = await  fetch('https://www.fdt-dog-supplies.com/custom_suite/imageTest.php', {
+                   this.showLoader = true;
+                   const request = await  fetch('https://www.fdt-dog-supplies.com/custom_suite/createImages.php', {
                        method: "POST",
                        headers: {
                            'Content-Type': 'application/json',
@@ -629,22 +631,42 @@ const customSuite = new Vue({
                    })
                    const {status,data} =  await request.json()
                    if(!status) throw new Error('Error')
-                    console.log(data)
+
                } catch (e) {
                    console.error(e)
                } finally {
-                   this.$refs.triggerBtn.click();
-                   console.log('end fetch')
+                   this.showLoader = false;
+                   this.isDisabledBtn = true;
+                   setPzenAjxAddCart(this, '582');
+
                }
            }
-            sentImagesPath()
+            if(!this.checkExistsCookie()) {
+                sentImagesPath()
+            } else {
+                this.showWarning = true;
+                const timeOut = setTimeout(()=> {
+                    this.showWarning = false;
+                    clearTimeout(timeOut)
+                },1000)
+            }
+        },
+
+        checkExistsCookie(name) {
+            const cookie = document.cookie;
+           if (cookie.indexOf('custom_suite_front_img=') !== -1) {
+               return true
+           }
+           return  false
         }
     },
 
-
     mounted() {
         const canvas =  this.$refs.canRef;
-        this.ctx = canvas.getContext("2d");
-        this.drawImages(this.frontSuite)
+        if(canvas) {
+            this.ctx = canvas.getContext("2d");
+            this.drawImages(this.frontSuite)
+        }
+
     }
 });

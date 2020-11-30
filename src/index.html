@@ -118,18 +118,21 @@
                     </div>
                 </div>
                 <div class="addToCart-suite">
-                    <button class="addToCart-suite__btn" @click="sentImageData">Add to Cart</button>
+                    <div class="previousOrder-warning" :class="[showWarning ? 'previousOrder-warning--show' :'' ]">
+                       Please buy previous order !
+                    </div>
+                    <div class="loader-wrapper" :class="[showLoader ? 'loader-wrapper--show' : '']">
+                        <div class="loader"></div>
+                    </div>
+                    <button
+                    class="addToCart-suite__btn"
+                    @click="sentImageData"
+                    >
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
-        <a
-           ref="triggerBtn"
-           class="btn btn-buynow btn--ys btn--xl custom-suite-btn"
-           href="https://www.fdt-dog-supplies.com/custom_suite/index.html?action=buy_now&amp;products_id=582"
-           onclick="setPzenAjxAddCart(this, '582'); return false;"
-           style="opacity: 0" >
-
-        </a>
     </div>
 
 </section>
